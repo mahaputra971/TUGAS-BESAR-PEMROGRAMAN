@@ -1,0 +1,148 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int pilih;
+float bungaTunggal, bungaMajemuk, penyusutan, pertumbuhan, hargaAwal, hargaAkhir;
+float persen, modalAwal, modalAkhir, hasil3, bulan;
+
+void dataBunga()
+{
+        printf("Masukan modal awal(Rp)                     : "); scanf("%f", &modalAwal);
+        printf("Waktu yang dibutuhkan ke modal akhir(Bulan): "); scanf("%f", &bulan);
+        printf("Besar bunga perBulan(persen)               : "); scanf("%f", &persen);
+        printf("\n\nHASIL : ");
+}
+
+int main()
+{
+    ulangBunga:
+    system("cls");
+    system ("color 02");
+    printf("\n=======================\n");
+    printf("PERHITUNGAN HARGA BUNGA");
+    printf("\n=======================\n");
+    printf("(1) Bunga Tunggal\n");
+    printf("(2) Bunga Majemuk\n");
+    printf("(3) Penyusutan\n");
+    printf("(4) Pertumbuhan\n");
+    printf("(5) Potongan Harga\n");
+    printf("(6) KELUAR\n");
+    printf("MASUKAN KODE YANG INGIN DIPROSES: "); scanf("%i", &pilih);
+
+    if(pilih==1)
+    {
+        system("cls");
+        printf("\n=========================\n");
+        printf("-Menghitung Bunga Tunggal-");
+        printf("\n=========================\n\n");
+        dataBunga();
+        printf("Bunga Tunggal = Modal Awal x (1 + bulan x bunga)");
+        printf("\nBunga Tunggal = Rp.%.2f,- x (1 + %.0f x %.0f/100) ", modalAwal,bulan, persen);
+        bungaTunggal=modalAwal*(1+(bulan*persen)/100);
+        printf("Jadi, Bunga Tunggal perhitungan diatas adalah Rp.%.2f,-", bungaTunggal);
+    }
+
+    else if(pilih==2)
+    {
+        system("cls");
+        printf("\n==========================\n");
+        printf("-Menghitung Bunga Majemuk-");
+        printf("\n==========================\n\n");
+        dataBunga();
+        printf("Bunga Majemuk = Modal Awal x (1 + bunga)^bulan");
+        printf("\nBunga Majemuk = Rp.%.2f,- x (1 + %.0f/100)^%.0f ", modalAwal,persen,bulan);
+        bungaMajemuk=modalAwal*pow((1+(persen/100)),bulan);
+        printf("Jadi, Bunga Majemuk perhitungan diatas adalah Rp.%.2f,-", bungaMajemuk);
+    }
+
+     else if(pilih==3)
+    {
+        system("cls");
+        printf("\n=======================\n");
+        printf("-Menghitung Penyusutan-");
+        printf("\n=======================\n\n");
+        dataBunga();
+        printf("Penyusutan = Modal Awal x (1 - bulan x persen)");
+        printf("\nPenyusutan = Rp.%.2f,- x (1 - %.0f x %.0f/100)", modalAwal,bulan,persen);
+        penyusutan=modalAwal*(1-bulan*persen/100);
+        printf("Jadi, perhitungan penyusutan diatas adalah Rp.%.2f,-", penyusutan);
+    }
+
+     else if(pilih==4)
+    {
+        system("cls");
+        printf("\n=======================\n");
+        printf("-Menghitung Pertumbuhan-");
+        printf("\n=======================\n");
+        dataBunga();
+        printf("Pertumbuhan = Modal Awal x (1 + persen)^bulan");
+        printf("\nPertumbuhan = Rp.%.2f,- x (1 + %.0f/100)^%.0f", modalAwal,persen,bulan);
+        pertumbuhan=modalAwal*(1-bulan*persen);
+        printf("Jadi, perhitungan penyusutan diatas adalah Rp.%.2f,-", pertumbuhan);
+    }
+
+    else if(pilih==5)
+    {
+        ulangHarga:
+        system("cls");
+        system("color 02");
+        printf("\n=======================\n");
+        printf("-Menghitung Potongan Harga-");
+        printf("\n=======================\n");
+        printf("(1) Mencari harga awal\n");
+        printf("(2) Mencari harga akhir\n");
+        printf("MASUKAN PILIHAN: "); scanf("%i", &pilih);
+        switch(pilih)
+        {
+        case 1:
+        system("cls");
+        printf("\n=======================\n");
+        printf("-Menghitung Harga Awal-");
+        printf("\n=======================\n");
+        printf("\nMasukan harga akhir(Rp) : "); scanf(" %f", &hargaAkhir);
+        printf("Potongan Bunga(persen)  : "); scanf(" %f", &bungaTunggal);
+        printf("\n\nHASIL: \n");
+        printf("Harga Awal = (Harga Akhir x (bunga+100)/100)");
+        hargaAwal = (hargaAkhir*100)/(bungaTunggal+100);
+        printf("\nJadi, Harga Awalnya adalah Rp.%.2f,-\n\n", hargaAwal);
+        break;
+        case 2:
+        system("cls");
+        printf("\n=======================\n");
+        printf("-Menghitung Harga Akhir-");
+        printf("\n=======================\n");
+        printf("\nMasukan harga awal(Rp) : "); scanf(" %f", &hargaAwal);
+        printf("Potongan Bunga(persen) : "); scanf("%f", &bungaTunggal);
+        printf("\nHASIL: \n");
+        printf("Harga Awal = (Harga Awal x 100/(bunga+100))");
+        hargaAkhir= (hargaAwal*(bungaTunggal+100))/100;
+        printf("\nJadi, Harga Awalnya adalah Rp.%.2f,-\n\n", hargaAkhir);
+        break;
+
+        default:
+        system("color 04");
+        printf("\n=====================================================\n");
+        printf("Pilihan Anda Salah, Silahkan Masukan Angka Yang Tepat.\n");
+        printf("\n=====================================================\n");
+        goto ulangHarga;
+        }
+    }
+
+    else if(pilih==6)
+    {
+        printf("\n===========\n");
+        printf("Terima Kasih");
+        printf("\n===========\n");
+    }
+
+    else
+    {
+        system("color 04");
+        printf("\n==========================================\n");
+        printf("Error!!!\nSilahkan Masukkan Angka yang benar\n\n");//goto ulangBunga;
+        printf("\n===========================================\n");
+    }
+
+    return 0;
+}
